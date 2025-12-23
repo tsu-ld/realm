@@ -1,0 +1,93 @@
+@import "tailwindcss";
+@font-face {
+  font-family: 'Minercraftory';
+  src: url('./assets/fonts/Minercraftory.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Minecraftia';
+  src: url('./assets/fonts/Minecraftia-Regular.ttf') format('truetype');
+}
+
+@utility bezel {
+    box-shadow: inset 0px -2px 0px 0px var(--bezel-color),
+      inset -2px 0px 0px 0px var(--bezel-color),
+      inset 0px 2px 0px 0px var(--bezel-color-invert),
+      inset 2px 0px 0px 0px var(--bezel-color-invert);
+}
+
+@utility bezel-invert {
+    box-shadow: inset 0px -2px 0px 0px var(--bezel-color-invert),
+      inset -2px 0px 0px 0px var(--bezel-color-invert),
+      inset 0px 2px 0px 0px var(--bezel-color),
+      inset 2px 0px 0px 0px var(--bezel-color);
+}
+
+@theme {
+  --color-primary: oklch(50% 0.065 60);
+  --color-secondary: oklch(from var(--color-primary) l c 240);
+  --color-muted: oklch(from var(--color-primary) 40% 0.025 h);
+
+  --color-background: oklch(from var(--color-primary) 97% 0.03 h);
+  --color-foreground: oklch(from var(--color-primary) 25% 0.065 h);
+
+  --color-success: oklch(from var(--color-primary) l c 145);
+  --color-warning: oklch(from var(--color-primary) l c 90);
+  --color-error: oklch(from var(--color-primary) l c 25);
+
+  --bezel-color: black;
+  --bezel-color-invert: white;
+
+  --font-heading: 'Minercraftory', sans-serif;
+  --font-body: 'Minecraftia', sans-serif;
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    @apply size-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-white/10;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary bezel;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary;
+  }
+
+  body {
+    @apply bg-background select-none text-foreground font-body antialiased flex flex-col justify-center items-center h-screen w-screen overflow-hidden p-6 selection:bg-primary selection:text-background;
+  }
+
+  main {
+    @apply flex flex-col justify-center items-center space-y-8 w-full h-full;
+  }
+
+  section {
+    @apply flex flex-col justify-center items-center space-y-4;
+  }
+
+  h1 {
+    @apply text-4xl font-bold font-heading tracking-wide leading-[1.2];
+  }
+
+  p {
+    @apply text-lg text-muted font-medium tracking-wide;
+  }
+
+  ul {
+    @apply space-x-8;
+  }
+
+  a {
+    @apply text-foreground hover:text-primary transition-colors;
+  }
+
+  button {
+    @apply relative cursor-pointer px-4 py-2 font-heading text-foreground bg-muted/20 text-lg transition-none active:translate-y-[2px]  hover:bg-muted/20 bezel active:bezel-invert;
+  }
+}
